@@ -11,6 +11,7 @@ from sqlalchemy import (create_engine)
 from sqlalchemy.orm import sessionmaker, relationship, scoped_session
 from os import getenv
 
+
 class DBStorage:
     """ dbstorage engine """
     __engine = None
