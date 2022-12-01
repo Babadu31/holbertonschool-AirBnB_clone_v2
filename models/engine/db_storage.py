@@ -1,18 +1,15 @@
 #!/usr/bin/python3
 """ this module contains the database storage engine for AirBnB project """
-from sqlalchemy import create_engine
-from os import getenv
+from models.base_model import BaseModel, Base
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
 from models.state import State
-from sqlalchemy.orm import sessionmaker, scoped_session
-
-username = getenv('HBNB_MYSQL_USER')
-password = getenv('HBNB_MYSQL_PWD')
-db = getenv('HBNB_MYSQL_DB')
-host = getenv('HBNB_MYSQL_HOST')
-v_env = getenv('HBNB_ENV')
-
-URI = f"mysql+mysqldb://{username}:{password}@{host}/{db}"
-
+from models.user import User
+from sqlalchemy import (create_engine)
+from sqlalchemy.orm import sessionmaker, relationship, scoped_session
+from os import getenv
 
 class DBStorage:
     """ dbstorage engine """
@@ -70,4 +67,4 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        self.__session.remove()
+        self.__session.close()
