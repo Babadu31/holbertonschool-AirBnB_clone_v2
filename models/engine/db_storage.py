@@ -5,6 +5,14 @@ from os import getenv
 from models.state import State
 from sqlalchemy.orm import sessionmaker, scoped_session
 
+username = getenv('HBNB_MYSQL_USER')
+password = getenv('HBNB_MYSQL_PWD')
+db = getenv('HBNB_MYSQL_DB')
+host = getenv('HBNB_MYSQL_HOST')
+v_env = getenv('HBNB_ENV')
+
+URI = f"mysql+mysqldb://{username}:{password}@{host}/{db}"
+
 
 class DBStorage:
     """ dbstorage engine """
