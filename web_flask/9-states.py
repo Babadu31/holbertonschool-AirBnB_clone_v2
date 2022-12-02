@@ -14,11 +14,20 @@ def close(self):
     storage.close()
 
 
-@app.route('/cities_by_states', strict_slashes=False)
-def cities_by_states():
-    """Displays html page with states and cities"""
+@app.route('/states', strict_slashes=False)
+def state():
+    """Displays html page with states"""
     states = storage.all(State)
-    return render_template('8-cities_by_states.html', states=states)
+    return render_template('9-states.html', states=states, mode='all')
+
+
+@app.route('/states/<id>', strict_slashes=False)
+def state_by_id(id):
+    """Displays html page with citys of that state"""
+    for state in storage.all(State).values():
+        if state.id == id:
+            return render_template('9-states.html', states=state, mode='id')
+    return render_template('9-states.html', states=state, mode='none')
 
 
 if __name__ == '__main__':
